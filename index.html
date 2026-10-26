@@ -1,0 +1,861 @@
+<!doctype html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>¿Por qué no se compromete contigo? 🔥</title>
+
+<meta name="description" content="Descúbrelo según su signo y el tuyo. 6 preguntas, 1 minuto.">
+
+<meta property="og:title" content="¿Por qué no se compromete contigo? 🔥">
+
+<meta property="og:description" content="Descúbrelo según su signo y el tuyo. 6 preguntas, 1 minuto.">
+
+<meta name="theme-color" content="#2a0f1f">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500;1,6..96,700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== COULEURS — à remplacer par la charte Casa Selymna si besoin ===== */
+
+:root{
+
+  color-scheme:dark;
+
+  --noche:#2a0f1f;        /* fond */
+
+  --terciopelo:#3b1730;   /* surfaces */
+
+  --vela:#f2c38b;         /* or chaud : accents */
+
+  --rubor:#f19bb2;        /* rose : boutons */
+
+  --tinta:#fbeef0;        /* texte */
+
+  --bruma:#cfa6b7;        /* texte secondaire */
+
+  --linea:rgba(241,155,178,.28);
+
+  --serif:"Bodoni Moda","Bodoni 72",Didot,Georgia,serif;
+
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+}
+
+*{box-sizing:border-box}
+
+html,body{margin:0;background:var(--noche);color:var(--tinta);font-family:var(--sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+
+  background:radial-gradient(90% 55% at 88% -8%,rgba(242,195,139,.20),transparent 62%),
+
+             radial-gradient(70% 50% at -10% 105%,rgba(241,155,178,.12),transparent 60%)}
+
+button{font:inherit;color:inherit}
+
+:focus-visible{outline:2px solid var(--vela);outline-offset:3px}
+
+ 
+
+.screen{display:none;flex-direction:column;min-height:100vh;min-height:100svh;max-width:480px;margin:0 auto;
+
+  padding:calc(18px + env(safe-area-inset-top)) 22px calc(28px + env(safe-area-inset-bottom))}
+
+.screen.on{display:flex}
+
+.marca{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--vela);margin:0;letter-spacing:.01em}
+
+ 
+
+/* Boutons */
+
+.btn{display:block;width:100%;border:0;border-radius:999px;padding:18px 22px;background:var(--rubor);color:var(--noche);
+
+  font-weight:700;font-size:17px;text-align:center;text-decoration:none;cursor:pointer;transition:transform .12s ease,filter .12s ease}
+
+.btn:active{transform:scale(.98);filter:brightness(.95)}
+
+.btn[disabled]{opacity:.4;pointer-events:none}
+
+ 
+
+/* Écran 1 */
+
+.hook{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0}
+
+.hook h1{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(46px,13.4vw,62px);line-height:1.02;letter-spacing:-.01em;margin:0 0 22px}
+
+.sub{color:var(--bruma);font-size:18px;line-height:1.45;margin:0}
+
+ 
+
+/* Barre du haut (signes + questions) */
+
+.top{display:flex;align-items:center;gap:14px;height:40px;margin-bottom:26px}
+
+.back{width:40px;height:40px;margin-left:-10px;border:0;background:none;font-size:30px;line-height:1;color:var(--bruma);cursor:pointer}
+
+.bar{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+
+.bar i{display:block;height:100%;width:0;background:var(--vela);transition:width .3s ease}
+
+.count{font-size:13px;color:var(--bruma);min-width:28px;text-align:right;font-variant-numeric:tabular-nums}
+
+ 
+
+.q{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.14;margin:0 0 24px}
+
+#qbody{animation:in .18s ease}
+
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+ 
+
+.signs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+
+.sg{border:1px solid var(--linea);background:rgba(255,255,255,.03);border-radius:18px;padding:14px 4px 12px;cursor:pointer;
+
+  display:flex;flex-direction:column;align-items:center;gap:6px;min-height:88px;justify-content:center}
+
+.sg b{font-size:30px;font-weight:400;line-height:1;color:var(--vela)}
+
+.sg span{font-size:14px}
+
+.answers{display:flex;flex-direction:column;gap:12px}
+
+.ans{border:1px solid var(--linea);background:rgba(255,255,255,.03);border-radius:18px;padding:17px 18px;text-align:left;
+
+  font-size:17px;line-height:1.35;cursor:pointer}
+
+.sg.sel,.ans.sel{background:var(--rubor);border-color:var(--rubor);color:var(--noche)}
+
+.sg.sel b{color:var(--noche)}
+
+ 
+
+/* Écran 9 */
+
+.mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+.field{width:100%;border:1px solid var(--linea);background:rgba(255,255,255,.05);border-radius:16px;padding:17px 18px;
+
+  font-size:17px;color:var(--tinta);margin:24px 0 14px;-webkit-appearance:none;appearance:none}
+
+.field::placeholder{color:rgba(207,166,183,.6)}
+
+.field:focus{outline:none;border-color:var(--vela)}
+
+ 
+
+/* Écran 10 */
+
+.calc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+.ring{position:relative;width:250px;height:250px;margin-bottom:40px;animation:spin 14s linear infinite}
+
+.ring span{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px;display:grid;place-items:center;
+
+  font-size:22px;color:var(--vela);opacity:.25;animation:glow 3s ease-in-out infinite}
+
+.ring::after{content:"";position:absolute;inset:62px;border-radius:50%;
+
+  background:radial-gradient(circle,rgba(242,195,139,.35),rgba(242,195,139,0) 70%)}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@keyframes glow{0%,100%{opacity:.25}40%{opacity:1}}
+
+#calcText{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.25;min-height:62px;margin:0 0 22px;max-width:300px}
+
+.load{width:180px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+
+.load i{display:block;height:100%;width:0;background:var(--vela)}
+
+.load.go i{width:100%;transition:width 3s linear}
+
+@media (prefers-reduced-motion:reduce){.ring,.ring span{animation:none}.ring span{opacity:.7}.load.go i{transition:none}}
+
+ 
+
+/* Écran 11 */
+
+#s11{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+
+.pct{font-family:var(--serif);font-style:italic;font-weight:700;font-size:112px;line-height:.9;color:var(--vela);margin:26px 0 6px;letter-spacing:-.03em}
+
+.pct small{font-size:.45em;font-weight:500;margin-left:2px}
+
+.rtitle{font-family:var(--serif);font-weight:500;font-size:33px;line-height:1.1;margin:0 0 12px}
+
+.second{font-size:14px;color:var(--bruma);margin:0 0 26px}
+
+.valid{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--rubor);margin:0 0 18px}
+
+.body p{font-size:17px;line-height:1.6;margin:0 0 16px}
+
+.closing{color:var(--vela)}
+
+ 
+
+.locked{margin:24px 0 0;padding:24px 20px;border-radius:24px;border:1px solid var(--linea);background:rgba(0,0,0,.18)}
+
+.lk{margin:0 0 20px}
+
+.lk p{margin:0 0 9px;font-size:16px;line-height:1.4;font-weight:600}
+
+.lk i{display:block;height:9px;border-radius:5px;background:var(--bruma);opacity:.35;filter:blur(3px);margin:0 0 7px}
+
+.lk i+i{width:62%}
+
+ 
+
+.offer{margin:34px 0 0;padding:28px 22px;border-radius:26px;background:var(--terciopelo);border:1px solid rgba(242,195,139,.35);scroll-margin-top:16px}
+
+.offer h2{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15;margin:0 0 20px}
+
+.offer ul{list-style:none;margin:0 0 24px;padding:0}
+
+.offer li{position:relative;padding-left:30px;font-size:16px;line-height:1.45;margin:0 0 12px}
+
+.offer li::before{content:"✦";position:absolute;left:4px;top:0;color:var(--vela)}
+
+.was{font-size:15px;color:var(--bruma);margin:0 0 2px}
+
+.was s{text-decoration-thickness:1px}
+
+.now{font-family:var(--serif);font-style:italic;font-weight:700;font-size:44px;color:var(--vela);margin:0 0 20px;line-height:1.1}
+
+ 
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:14px 22px calc(14px + env(safe-area-inset-bottom));
+
+  background:linear-gradient(to top,var(--noche) 55%,rgba(42,15,31,0));transform:translateY(110%);transition:transform .25s ease}
+
+.sticky.on{transform:none}
+
+.sticky .btn{max-width:436px;margin:0 auto;box-shadow:0 8px 30px rgba(241,155,178,.35)}
+
+</style>
+
+</head>
+
+<body>
+
+ 
+
+<!-- 1. Accroche -->
+
+<section class="screen on" id="s1">
+
+  <p class="marca">Casa Selymna</p>
+
+  <div class="hook">
+
+    <h1>¿Por qué no se compromete contigo? 🔥</h1>
+
+    <p class="sub">Descúbrelo según su signo y el tuyo. 6 preguntas, 1 minuto.</p>
+
+  </div>
+
+  <button class="btn" id="start">Empezar</button>
+
+</section>
+
+ 
+
+<!-- 2 à 8. Signes + questions -->
+
+<section class="screen" id="sq">
+
+  <div class="top">
+
+    <button class="back" id="back" aria-label="Volver">‹</button>
+
+    <div class="bar"><i id="barFill"></i></div>
+
+    <span class="count" id="count"></span>
+
+  </div>
+
+  <div id="qbody"></div>
+
+</section>
+
+ 
+
+<!-- 9. Email -->
+
+<section class="screen" id="s9">
+
+  <div class="mid">
+
+    <h2 class="q">Tu resultado está listo ✨</h2>
+
+    <p class="sub">¿A dónde te lo enviamos?</p>
+
+    <input class="field" id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="tu@email.com">
+
+    <button class="btn" id="emailBtn" disabled>Ver mi resultado</button>
+
+  </div>
+
+</section>
+
+ 
+
+<!-- 10. Calcul -->
+
+<section class="screen" id="s10">
+
+  <div class="calc">
+
+    <div class="ring" id="ring" aria-hidden="true"></div>
+
+    <p id="calcText">Analizando su signo y el tuyo… 💫</p>
+
+    <div class="load" id="load"><i></i></div>
+
+  </div>
+
+</section>
+
+ 
+
+<!-- 11. Résultat + offre -->
+
+<section class="screen" id="s11"></section>
+
+ 
+
+<div class="sticky" id="sticky"><a class="btn" data-skool href="#">Desbloquear por $9</a></div>
+
+ 
+
+<script>
+
+/* =====================================================================
+
+   CONFIGURATION
+
+   ===================================================================== */
+
+const CONFIG = {
+
+  API_URL: '',  // URL de l'application web Apps Script (finit par /exec). Vide = les emails ne sont pas enregistrés.
+
+  SKOOL_URL: 'https://www.skool.com/casa-selymna-2333/about'
+
+};
+
+ 
+
+/* ===== Données ===== */
+
+const T = '︎'; // force l'affichage texte des symboles (pas d'emoji violet sur iPhone)
+
+const SIGNS = [
+
+  {n:'Aries',s:'♈'},{n:'Tauro',s:'♉'},{n:'Géminis',s:'♊'},{n:'Cáncer',s:'♋'},
+
+  {n:'Leo',s:'♌'},{n:'Virgo',s:'♍'},{n:'Libra',s:'♎'},{n:'Escorpio',s:'♏'},
+
+  {n:'Sagitario',s:'♐'},{n:'Capricornio',s:'♑'},{n:'Acuario',s:'♒'},{n:'Piscis',s:'♓'}
+
+];
+
+ 
+
+// [texte, profil principal (+2), profil secondaire (+1)]
+
+const QUESTIONS = [
+
+  {text:'¿Cómo es él después de estar contigo?',a:[
+
+    ['Cariñoso, se queda y habla, pero evita los temas serios','M','C'],
+
+    ['Se va rápido o desaparece','P','O'],
+
+    ['Es cariñoso y luego se pone distante','C','M'],
+
+    ['Actúa como si nada hubiera pasado','O','P']]},
+
+  {text:'¿Cada cuánto te escribe?',a:[
+
+    ['Todos los días, pero nunca habla del futuro','M','C'],
+
+    ['Solo de noche','P','O'],
+
+    ['Muy intenso unos días y luego silencio','C','M'],
+
+    ['Solo si yo le escribo primero','O','P']]},
+
+  {text:'¿Te presenta a sus amigos o a su familia?',a:[
+
+    ['Sí, pero cambia de tema cuando hablan de «etiquetas»','M','C'],
+
+    ['No, solo nos vemos a solas','P','O'],
+
+    ['Dice «algún día, no sé»','C','M'],
+
+    ['Me esconde, casi nadie sabe de mí','O','P']]},
+
+  {text:'Cuando hablas de «lo nuestro», él…',a:[
+
+    ['Se pone nervioso y dice que le da miedo arruinarlo','M','C'],
+
+    ['Dice que está bien así, sin presiones','P','O'],
+
+    ['Dice «no sé qué quiero»','C','M'],
+
+    ['Cambia de tema o se molesta','O','P']]},
+
+  {text:'¿Cómo habla de sus relaciones pasadas?',a:[
+
+    ['Con dolor, dice que le rompieron el corazón','M','C'],
+
+    ['Dice que no cree en las relaciones o que no las necesita','P','O'],
+
+    ['Todavía duda o habla mucho de su ex','C','M'],
+
+    ['Sigue hablando con otras mujeres o no deja claro con quién habla','O','P']]},
+
+  {text:'¿Qué sientes tú cuando estás con él?',a:[
+
+    ['Que me quiere, pero algo lo frena','M','C'],
+
+    ['Que disfruta el momento y nada más','P','O'],
+
+    ['Confusión, un día todo bien y otro nada','C','M'],
+
+    ['Ansiedad, siento que soy una opción','O','P']]}
+
+];
+
+ 
+
+const PROFILES = {
+
+  M:{label:'Miedo al compromiso',title:'Te quiere, pero le tiene miedo al compromiso 💔',
+
+     v:'No estás loca. Lo que sientes tiene explicación.',
+
+     x:'Su comportamiento muestra que hay sentimientos reales, pero también algo que lo frena. Suele ser miedo a perder libertad, a repetir una herida o a no estar a la altura. No es falta de interés, es miedo.',
+
+     c:'La buena noticia es que este patrón tiene salida, y depende mucho de su signo.'},
+
+  P:{label:'Solo vive el momento',title:'Le gustas, pero solo vive el momento 🔥',
+
+     v:'Merecías saber esto antes de seguir esperando.',
+
+     x:'Su comportamiento muestra atracción y disfrute, pero poca intención de construir algo. Está cómodo con lo que hay y no está sintiendo la necesidad de dar el siguiente paso. Eso no significa que no pueda cambiar, pero ahora mismo no lo está buscando.',
+
+     c:'Lo importante es saber qué hacer con esta información, y eso depende de tu signo y del suyo.'},
+
+  C:{label:'Confundido',title:'Está confundido y no sabe lo que quiere 🌀',
+
+     v:'Si te sientes en una montaña rusa, es normal. Su comportamiento también lo es.',
+
+     x:'Hay interés, pero también dudas, una etapa sin resolver o miedo a decidir. Un día se acerca y otro se aleja, y eso genera confusión en ti. Muchas veces la confusión es de él, no tuya.',
+
+     c:'Hay una forma de manejarlo sin perder tu paz, y se explica mejor con su signo.'},
+
+  O:{label:'Te tiene como opción',title:'Hoy te trata como una opción 🌙',
+
+     v:'Si lo sentías, tu intuición tenía razón. Y mereces claridad.',
+
+     x:'Su comportamiento muestra que no te está dando un lugar prioritario ahora mismo. Eso no habla de tu valor, habla del lugar donde él está. Lo importante es que tú decidas qué hacer con esta información, en lugar de seguir adivinando.',
+
+     c:'Con su signo y el tuyo podemos ver cómo cambiar esta dinámica o cuándo es mejor soltar.'}
+
+};
+
+ 
+
+/* ===== Calcul du résultat (section 4 du brief) ===== */
+
+function computeResult(answers){
+
+  const scores = {M:0,P:0,C:0,O:0};
+
+  answers.forEach((ai,qi)=>{ const a = QUESTIONS[qi].a[ai]; scores[a[1]] += 2; scores[a[2]] += 1; });
+
+  const max = Math.max(...Object.values(scores));
+
+  const tied = Object.keys(scores).filter(k=>scores[k]===max);
+
+  let winner;
+
+  if (tied.length === 1) winner = tied[0];
+
+  else {
+
+    const q6 = QUESTIONS[5].a[answers[5]][1];
+
+    if (tied.includes(q6)) winner = q6;
+
+    else if (tied.includes('C')) winner = 'C';
+
+    else winner = ['M','P','O'].find(k=>tied.includes(k));
+
+  }
+
+  const pct = Math.min(95, Math.round(55 + (scores[winner]/18)*70));
+
+  const rest = ['M','P','C','O'].filter(k=>k!==winner);
+
+  const secMax = Math.max(...rest.map(k=>scores[k]));
+
+  const secondary = secMax > 0 ? rest.find(k=>scores[k]===secMax) : null;
+
+  return {winner,pct,secondary,scores};
+
+}
+
+ 
+
+/* ===== État ===== */
+
+const S = {step:0, ella:null, el:null, answers:[], email:'', id:''};
+
+const $ = id => document.getElementById(id);
+
+let busy = false;
+
+ 
+
+function save(){ try{ sessionStorage.setItem('cs_quiz', JSON.stringify(S)); }catch(e){} }
+
+function load(){ try{ return JSON.parse(sessionStorage.getItem('cs_quiz')||'null'); }catch(e){ return null; } }
+
+function code(){ return S.ella + '.' + S.el + '.' + S.answers.join(''); }
+
+function newId(){ return 'L' + Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+
+ 
+
+function show(id){
+
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id));
+
+  window.scrollTo(0,0);
+
+  if (id !== 's11') $('sticky').classList.remove('on');
+
+}
+
+ 
+
+/* ===== Écrans 2 à 8 ===== */
+
+function renderStep(){
+
+  const st = S.step, body = $('qbody');
+
+  $('barFill').style.width = ((st+1)/8*100) + '%';
+
+  $('count').textContent = st >= 2 ? (st-1) + '/6' : '';
+
+  let html;
+
+  if (st < 2){
+
+    const cur = st === 0 ? S.ella : S.el;
+
+    html = '<h2 class="q">' + (st===0 ? '¿Cuál es TU signo?' : '¿Cuál es el signo de ÉL?') + '</h2><div class="signs">' +
+
+      SIGNS.map((z,i)=>'<button class="sg'+(cur===i?' sel':'')+'" data-v="'+i+'"><b>'+z.s+T+'</b><span>'+z.n+'</span></button>').join('') + '</div>';
+
+  } else {
+
+    const q = QUESTIONS[st-2], cur = S.answers[st-2];
+
+    html = '<h2 class="q">' + q.text + '</h2><div class="answers">' +
+
+      q.a.map((a,i)=>'<button class="ans'+(cur===i?' sel':'')+'" data-v="'+i+'">'+a[0]+'</button>').join('') + '</div>';
+
+  }
+
+  body.innerHTML = html;
+
+  body.style.animation = 'none'; body.offsetHeight; body.style.animation = '';
+
+}
+
+ 
+
+$('qbody').addEventListener('click', e=>{
+
+  const b = e.target.closest('[data-v]'); if (!b || busy) return;
+
+  busy = true;
+
+  const v = +b.dataset.v;
+
+  b.parentNode.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'));
+
+  b.classList.add('sel');
+
+  if (S.step === 0) S.ella = v; else if (S.step === 1) S.el = v; else S.answers[S.step-2] = v;
+
+  setTimeout(()=>{
+
+    busy = false;
+
+    if (S.step < 7){ S.step++; renderStep(); }
+
+    else { show('s9'); }
+
+  }, 230);
+
+});
+
+ 
+
+$('back').addEventListener('click', ()=>{
+
+  if (busy) return;
+
+  if (S.step === 0) show('s1'); else { S.step--; renderStep(); }
+
+});
+
+ 
+
+$('start').addEventListener('click', ()=>{ S.step = 0; renderStep(); show('sq'); });
+
+ 
+
+/* ===== Écran 9 : email ===== */
+
+const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+
+$('email').addEventListener('input', e=>{ $('emailBtn').disabled = !emailOk(e.target.value); });
+
+$('email').addEventListener('keydown', e=>{ if (e.key === 'Enter' && emailOk(e.target.value)) $('emailBtn').click(); });
+
+$('emailBtn').addEventListener('click', ()=>{
+
+  S.email = $('email').value.trim().toLowerCase();
+
+  if (!S.id) S.id = newId();
+
+  save();
+
+  const r = computeResult(S.answers);
+
+  api('lead', {
+
+    id:S.id, email:S.email,
+
+    signo_ella:SIGNS[S.ella].n, signo_el:SIGNS[S.el].n,
+
+    respuestas:S.answers.map((ai,qi)=>QUESTIONS[qi].a[ai][0]),
+
+    perfil:PROFILES[r.winner].title, porcentaje:r.pct, codigo:code()
+
+  }).catch(()=>{});
+
+  $('email').blur();
+
+  runCalc();
+
+});
+
+ 
+
+/* ===== Écran 10 : calcul ===== */
+
+(function buildRing(){
+
+  $('ring').innerHTML = SIGNS.map((z,i)=>{
+
+    const a = i*30*Math.PI/180, r = 108;
+
+    return '<span style="transform:translate('+(Math.sin(a)*r).toFixed(1)+'px,'+(-Math.cos(a)*r).toFixed(1)+'px);animation-delay:'+(i*0.25)+'s">'+z.s+T+'</span>';
+
+  }).join('');
+
+})();
+
+ 
+
+function runCalc(){
+
+  show('s10');
+
+  const txt = $('calcText'), ld = $('load');
+
+  txt.textContent = 'Analizando su signo y el tuyo… 💫';
+
+  ld.classList.remove('go'); ld.offsetHeight; ld.classList.add('go');
+
+  setTimeout(()=>{ txt.textContent = 'Leyendo su comportamiento…'; }, 1000);
+
+  setTimeout(()=>{ txt.textContent = 'Calculando tu compatibilidad…'; }, 2000);
+
+  setTimeout(openResult, 3000);
+
+}
+
+ 
+
+/* ===== Écran 11 : résultat + offre ===== */
+
+function renderResult(){
+
+  const r = computeResult(S.answers), p = PROFILES[r.winner];
+
+  $('s11').innerHTML =
+
+    '<p class="marca">Casa Selymna</p>' +
+
+    '<div class="pct">' + r.pct + '<small>%</small></div>' +
+
+    '<h1 class="rtitle">' + p.title + '</h1>' +
+
+    (r.secondary ? '<p class="second">También hay señales de «' + PROFILES[r.secondary].label + '»</p>' : '<div style="height:14px"></div>') +
+
+    '<p class="valid">' + p.v + '</p>' +
+
+    '<div class="body"><p>' + p.x + '</p><p class="closing">' + p.c + '</p></div>' +
+
+    '<div class="locked">' +
+
+      ['Lo que él realmente siente por ti','Qué hacer para que dé el paso (o cuándo es mejor soltar)','Tu compatibilidad completa con su signo','Lo que dice tu carta astral sobre cómo amas y qué atraes']
+
+        .map(t=>'<div class="lk"><p>🔒 ' + t + '</p><i></i><i></i></div>').join('') +
+
+      '<button class="btn" id="toOffer">Desbloquear mi análisis completo</button>' +
+
+    '</div>' +
+
+    '<div class="offer" id="offer">' +
+
+      '<h2>Desbloquea tu análisis completo y entra a Casa Selymna 💫</h2>' +
+
+      '<ul><li>Tu análisis completo de por qué él no se compromete</li><li>Tu carta astral y tu compatibilidad con él</li>' +
+
+      '<li>Acceso a Casa Selymna, mi grupo privado, donde yo te ayudo con tu situación</li><li>Clases de astrología para entender tu carta y la de los demás</li></ul>' +
+
+      '<p class="was">Una carta astral cuesta <s>$50</s> por separado</p>' +
+
+      '<p class="now">Hoy solo $9</p>' +
+
+      '<a class="btn" id="offerBtn" data-skool href="#">Entrar a Casa Selymna por $9</a>' +
+
+    '</div>';
+
+  document.querySelectorAll('[data-skool]').forEach(a=>{ a.href = CONFIG.SKOOL_URL; });
+
+  $('toOffer').addEventListener('click', ()=>{
+
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    $('offer').scrollIntoView({behavior: smooth ? 'smooth' : 'auto', block:'start'});
+
+  });
+
+}
+
+ 
+
+function openResult(){ renderResult(); show('s11'); watchSticky(); }
+
+ 
+
+// Bouton fixe : visible pendant le défilement, caché quand le bouton de l'offre est à l'écran
+
+let stickyObs;
+
+function watchSticky(){
+
+  const st = $('sticky'), target = $('offerBtn');
+
+  if (stickyObs) stickyObs.disconnect();
+
+  if (!('IntersectionObserver' in window)){ st.classList.add('on'); return; }
+
+  stickyObs = new IntersectionObserver(es=>{
+
+    es.forEach(en=>{ st.classList.toggle('on', !en.isIntersecting && $('s11').classList.contains('on')); });
+
+  });
+
+  stickyObs.observe(target);
+
+}
+
+ 
+
+/* ===== Enregistrement (Apps Script) ===== */
+
+function api(action, data){
+
+  if (!CONFIG.API_URL) return Promise.resolve({ok:false});
+
+  const ctrl = new AbortController(); const to = setTimeout(()=>ctrl.abort(), 20000);
+
+  return fetch(CONFIG.API_URL, {method:'POST', body:JSON.stringify(Object.assign({action}, data)), signal:ctrl.signal})
+
+    .then(r=>r.json()).finally(()=>clearTimeout(to));
+
+}
+
+ 
+
+/* ===== Démarrage ===== */
+
+(function init(){
+
+  document.querySelectorAll('[data-skool]').forEach(a=>{ a.href = CONFIG.SKOOL_URL; });
+
+  if (!CONFIG.API_URL) console.warn('API_URL vide : les emails ne sont pas enregistrés');
+
+  // Lien des emails de relance : ?id=...&t=ella.el.reponses
+
+  const q = new URLSearchParams(location.search);
+
+  const t = q.get('t'), id = q.get('id');
+
+  if (t && /^\d{1,2}\.\d{1,2}\.[0-3]{6}$/.test(t)){
+
+    const [a,b,c] = t.split('.');
+
+    if (+a < 12 && +b < 12){
+
+      Object.assign(S, {ella:+a, el:+b, answers:c.split('').map(Number), id:id||newId()});
+
+      save(); openResult(); return;
+
+    }
+
+  }
+
+  // Retour arrière depuis Skool : on réaffiche le résultat
+
+  const saved = load();
+
+  if (saved && saved.email && saved.answers && saved.answers.length === 6){
+
+    Object.assign(S, saved); openResult();
+
+  }
+
+})();
+
+</script>
+
+</body>
+
+</html>
